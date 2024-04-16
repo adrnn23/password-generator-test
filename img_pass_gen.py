@@ -53,12 +53,16 @@ def generatePassword(valArr):
     strPass = ""
     for i in range(len(valArr)):
         strPass += str(char_map.get(valArr[i]%63))
-    
-    strPass = strPass[16:32]
+
+    strPass_part = ""
     file = open("passwords.txt", "a")
-    file.write(strPass + "\n")
+    for i in range(16):
+        offset = i*16
+        strPass_part = strPass[0+offset:16+offset]
+        file.write(strPass_part + "\n")
+        print(strPass_part)
     file.close
-    print(strPass)
+    
 
 def imageProcess(image, logisticVal0, logisticVal1):
     new_image = image.copy()
